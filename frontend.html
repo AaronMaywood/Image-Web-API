@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image API Sample</title>
+</head>
+<body>
+    <h1>ランダム画像表示</h1>
+    <p id="image"></p>
+    <script>
+    // https://adjustacademy.com/javascript_/image-web-spi/api.php を使用して、ランダムな猫画像のURLを取得する
+    async function getURL(){
+        let response = await fetch('https://adjustacademy.com/javascript_/Image-Web-API/api.php');
+        let json = await response.json()
+        return json.message;  // "8192275281_2f5906bf37_c.jpg" のような猫画像のURL
+    }
+
+    // 画面に犬画像をセットする
+    async function setImage(){
+        let url = await getURL();
+        let img = document.createElement('img');
+        img.src = url;
+        let p = document.querySelector('#image');
+        p.appendChild(img);
+    }
+  
+    setImage();
+    </script>
+</body>
+</html>
